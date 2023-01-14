@@ -35,15 +35,18 @@ download_to_zip()
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 اگر لازم بود تا عکس ها رو از نت دریافت کنید به جای اینکه جایی در دایرکتوری محلی ذخیره شده باشن باید از توابع زیر استفاده کنید
 
+```
 def fetch_image(url):
     ''' function to return pil image'''
     response = requests.get(url)
     img = Image.open(BytesIO(response.content))
     return img
+```
     
     
 و زمانی که لیست ادرس عکس ها رو iterate میکنه باید ادرس کامل عکس رو در لیست ذخیره کرده باشین پس تابع زیر هم به این شکل میشه 
 
+```
 def download_to_zip(request):
     images_tuple = []
     images = [
@@ -63,7 +66,7 @@ def download_to_zip(request):
     response = HttpResponse(full_zip_in_memory, content_type='application/force-download')
     response['Content-Disposition'] = 'attachment; filename="{}"'.format('images.zip')
     return response
-
+```
 
 
 
